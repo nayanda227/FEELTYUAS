@@ -6,16 +6,16 @@ class OnboardingItems {
         title: "Get Burn",
         descriptions:
             "Let's keep burning, to achive yours goals, it hurts only temporarily, if you give up now you will be in pain forever",
-        image: "assets/onboarding1.png"),
+        image: "assets/images/onboarding1.png"),
     OnboardingInfo(
         title: "Eat Well",
         descriptions:
             "Let's start a healthy lifestyle with us, we can determine your diet every day. healthy eating is fun",
-        image: "assets/onboarding2.png"),
+        image: "assets/images/onboarding2.png"),
     OnboardingInfo(
         title: "Track Your Progress",
         descriptions:
             "Watch your gains stack up with our intuitive progress tracking tools. From reps and sets to weight lifted and calories burned, every milestone is within reach",
-        image: "assets/onboarding3.png"),
+        image: "assets/images/onboarding3.png"),
   ];
 }

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 import '../../../constants.dart';
-// import '../../Login/login_screen.dart';
-// import '../../Signup/signup_screen.dart';
+import '../../Login/login_screen.dart';
+import '../../SignUp/signup_screen.dart';
 
 class LoginAndSignupBtn extends StatelessWidget {
   const LoginAndSignupBtn({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +24,19 @@ class LoginAndSignupBtn extends StatelessWidget {
               ),
             );
           },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: kPrimaryColor, // Warna dari constants
+            minimumSize: const Size(double.infinity, 50), // Lebar penuh
+          ),
           child: Text(
             "Login".toUpperCase(),
+            style: const TextStyle(color: Colors.white),
           ),
         ),
-        const SizedBox(height: 16),
+        const SizedBox(
+          width: 10,
+          height: 20,
+        ),
         ElevatedButton(
           onPressed: () {
             Navigator.push(
@@ -41,12 +49,13 @@ class LoginAndSignupBtn extends StatelessWidget {
             );
           },
           style: ElevatedButton.styleFrom(
-            backgroundColor: kPrimaryLightColor,
+            backgroundColor: kPrimaryColor,
             elevation: 0,
+            minimumSize: const Size(double.infinity, 50),
           ),
           child: Text(
             "Sign Up".toUpperCase(),
-            style: const TextStyle(color: Colors.black),
+            style: const TextStyle(color: Colors.white),
           ),
         ),
       ],

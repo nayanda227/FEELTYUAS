@@ -39,7 +39,18 @@ dependencies:
   google_nav_bar: ^5.0.6
   flutter_svg: ^1.0.0
   flutter_native_splash: ^2.4.2
+  smooth_page_indicator: ^1.2.0+3
+  shared_preferences: ^2.3.3
 
+flutter_native_splash:
+  color: "#f7f6f1"
+  image: assets/images/feelty.png
+
+  android_12:
+    image: assets/images/feelty.png
+    icon_background_color: "#f7f6f1"
+  web: false
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

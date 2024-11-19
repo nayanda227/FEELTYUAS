@@ -6,8 +6,8 @@ import '../../SignUp/signup_screen.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class LoginForm extends StatelessWidget {
               hintText: "Your email",
               prefixIcon: Padding(
                 padding: EdgeInsets.all(defaultPadding),
-                child: Icon(Icons.person),
+                child: Icon(Icons.email),
               ),
             ),
           ),

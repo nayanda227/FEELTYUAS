@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'components/login_form.dart';
+import 'components/signup_form.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class SignUpScreen extends StatelessWidget {
+  const SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,14 +12,14 @@ class LoginScreen extends StatelessWidget {
           child: LayoutBuilder(
             builder: (context, constraints) {
               if (constraints.maxWidth < 600) {
-                return const MobileLoginScreen();
+                return const MobileSignupScreen();
               } else {
                 return const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SizedBox(
                       width: 450,
-                      child: LoginForm(),
+                      child: SignUpForm(),
                     ),
                   ],
                 );
@@ -32,8 +32,8 @@ class LoginScreen extends StatelessWidget {
   }
 }
 
-class MobileLoginScreen extends StatelessWidget {
-  const MobileLoginScreen({super.key});
+class MobileSignupScreen extends StatelessWidget {
+  const MobileSignupScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,7 @@ class MobileLoginScreen extends StatelessWidget {
             Spacer(),
             Expanded(
               flex: 8,
-              child: LoginForm(),
+              child: SignUpForm(),
             ),
             Spacer(),
           ],
