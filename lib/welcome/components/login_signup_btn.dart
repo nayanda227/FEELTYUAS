@@ -29,7 +29,7 @@ class LoginAndSignupBtn extends StatelessWidget {
             minimumSize: const Size(double.infinity, 50), // Lebar penuh
           ),
           child: Text(
-            "Login".toUpperCase(),
+            "Sign In".toUpperCase(),
             style: const TextStyle(color: Colors.white),
           ),
         ),

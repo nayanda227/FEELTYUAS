@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import '../SignUp/signup_screen.dart';
+import '../components/already_have_an_account_acheck.dart';
 import 'components/login_form.dart';
+import 'components/or_divider.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -14,12 +17,32 @@ class LoginScreen extends StatelessWidget {
               if (constraints.maxWidth < 600) {
                 return const MobileLoginScreen();
               } else {
-                return const Row(
+                return Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       width: 450,
-                      child: LoginForm(),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          LoginForm(),
+                          SizedBox(height: 20),
+                          OrDivider(),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 20),
+                    AlreadyHaveAnAccountCheck(
+                      press: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return const SignUpScreen();
+                            },
+                          ),
+                        );
+                      },
                     ),
                   ],
                 );
@@ -37,18 +60,36 @@ class MobileLoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Row(
+    return Column(
+      children: [
+        const Row(
           children: [
             Spacer(),
             Expanded(
               flex: 8,
-              child: LoginForm(),
+              child: Column(
+                children: [
+                  LoginForm(),
+                  SizedBox(height: 20),
+                  OrDivider(),
+                ],
+              ),
             ),
             Spacer(),
           ],
+        ),
+        const SizedBox(height: 20),
+        AlreadyHaveAnAccountCheck(
+          press: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return const SignUpScreen();
+                },
+              ),
+            );
+          },
         ),
       ],
     );

@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
                 ClipPath(
                   clipper: MyCustomClipper(),
                   clipBehavior:
-                      Clip.hardEdge, // Tambahkan untuk mengatasi overflow
+                  Clip.hardEdge, // Tambahkan untuk mengatasi overflow
                   child: Container(
                     height: 300,
                     color: Colors.orange,
@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         const SizedBox(height: 50), // Jarak dari atas
                         const Text(
-                          'Hi, Lana',
+                          'Hi, Jungkook Jeon',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 14,
@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage> {
                                 const CircleAvatar(
                                   backgroundColor: Colors.white,
                                   child:
-                                      Icon(Icons.person, color: Colors.orange),
+                                  Icon(Icons.person, color: Colors.orange),
                                 ),
                                 const SizedBox(width: 20),
                                 CircleAvatar(
@@ -167,7 +167,7 @@ class _HomePageState extends State<HomePage> {
                                       Expanded(
                                         child: Column(
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                           children: [
                                             SvgPicture.asset(
                                               'assets/icons/arrow-switch-horizontal.svg',
@@ -199,14 +199,14 @@ class _HomePageState extends State<HomePage> {
                                             const SizedBox(height: 8),
                                             Container(
                                               padding:
-                                                  const EdgeInsets.symmetric(
+                                              const EdgeInsets.symmetric(
                                                 horizontal: 16,
                                                 vertical: 8,
                                               ),
                                               decoration: BoxDecoration(
                                                 color: Colors.orange,
                                                 borderRadius:
-                                                    BorderRadius.circular(16),
+                                                BorderRadius.circular(16),
                                               ),
                                               child: const Text(
                                                 'Day 10',
@@ -221,7 +221,7 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                       const SizedBox(
                                           width:
-                                              16), // Jarak antara konten dan gambar
+                                          16), // Jarak antara konten dan gambar
                                       SizedBox(
                                         width: 136,
                                         height: 136,
@@ -311,7 +311,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                               child: Column(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                MainAxisAlignment.spaceBetween,
                                 children: [
                                   const Text(
                                     'Daily',
@@ -342,12 +342,12 @@ class _HomePageState extends State<HomePage> {
                               padding: const EdgeInsets.all(16),
                               decoration: BoxDecoration(
                                 color: Colors.grey[
-                                    200], // Warna latar belakang tetap ada
+                                200], // Warna latar belakang tetap ada
                                 borderRadius: BorderRadius.circular(16),
                               ),
                               child: Column(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                MainAxisAlignment.spaceBetween,
                                 children: [
                                   const Text(
                                     'Weekly',
@@ -499,15 +499,15 @@ class _HomePageState extends State<HomePage> {
         children: [
           isSvg
               ? SvgPicture.asset(
-                  assetPath, // Untuk SVG
-                  width: 120,
-                  height: 120,
-                )
+            assetPath, // Untuk SVG
+            width: 120,
+            height: 120,
+          )
               : Image.asset(
-                  assetPath, // Untuk gambar biasa
-                  width: 120,
-                  height: 120,
-                ),
+            assetPath, // Untuk gambar biasa
+            width: 120,
+            height: 120,
+          ),
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(

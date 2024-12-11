@@ -1,173 +1,152 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_svg/flutter_svg.dart';
+import 'package:uts_feelty/Updateprofile.dart';
 import 'package:uts_feelty/gnavbar.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class ProfilePage extends StatefulWidget {
+  const ProfilePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: ProfilePage(),
-    );
-  }
+  _ProfilePageState createState() => _ProfilePageState();
 }
 
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: const NavBar(),
       appBar: AppBar(
-        backgroundColor: Colors.white38,
+        backgroundColor: Colors.white,
         elevation: 0,
-        title: const Text('Profile', style: TextStyle(color: Colors.black)),
-        centerTitle: true,
-        leading: const Icon(Icons.arrow_back, color: Colors.black),
-        actions: const [
-          Icon(Icons.edit, color: Colors.black),
-        ],
+        title: const Text(
+          'Profile',
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        ),
+        centerTitle: false,
       ),
-      body: const SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Profile Info
-              Row(
-                children: [
-                  CircleAvatar(
-                    radius: 30,
-                    backgroundImage: NetworkImage(
-                        'https://avatars.githubusercontent.com/u/86990795?v=4'),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                CircleAvatar(
+                  radius: 40,
+                  backgroundImage: NetworkImage(
+                    'https://pannkpop.com/wp-content/uploads/2023/10/BTS-Jungkooks-solo-album-GOLDEN-concept-photo-SOLID-4-768x751.jpg',
                   ),
-                  SizedBox(width: 16),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Lana',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
+                ),
+                const SizedBox(width: 10),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text(
+                      'Jeon Jungkook',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
                       ),
-                      Text('luthfihakim@gmail.com'),
-                      Text('0831524308'),
-                    ],
-                  )
-                ],
-              ),
-              SizedBox(height: 20),
-              // Stats Cards
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  ProfileStatCard(title: '55 kg', subtitle: 'Weight'),
-                  ProfileStatCard(title: '20', subtitle: 'Years Old'),
-                  ProfileStatCard(title: '167 cm', subtitle: 'Height'),
-                ],
-              ),
-              SizedBox(height: 20),
-              // Account Section
-              SectionTitle('Account'),
-              ProfileMenuItem('Your profile', Icons.person),
-              ProfileMenuItem('Settings', Icons.settings),
-              ProfileMenuItem('Help center', Icons.help),
-              ProfileMenuItem('Notifications', Icons.notifications),
-              ProfileMenuItem('Change language', Icons.language),
-              ProfileMenuItem('Manage accounts', Icons.account_circle),
-              SizedBox(height: 20),
-              // General Section
-              SectionTitle('General'),
-              ProfileMenuItem('Privacy Policy', Icons.lock),
-              ProfileMenuItem('Terms of Service', Icons.article),
-              ProfileMenuItem('Rate Feetly App', Icons.thumb_up),
-            ],
-          ),
+                    ),
+                    Text(
+                      'jeonjungkook@gmail.com',
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ],
+                ),
+                const Spacer(),
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.edit, color: Colors.orange),
+                ),
+              ],
+            ),
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                _buildInfoCard('68 kg', 'Weight'),
+                _buildInfoCard('27', 'Years Old'),
+                _buildInfoCard('181 cm', 'Height'),
+              ],
+            ),
+            const SizedBox(height: 20),
+            _buildSectionTitle('Account'),
+            _buildListTile(Icons.person, 'Your profile', () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const UpdateProfilePage(),
+                ),
+              );
+            }),
+            _buildListTile(Icons.settings, 'Settings', () {}),
+            _buildListTile(Icons.help_outline, 'Help center', () {}),
+            _buildListTile(Icons.notifications, 'Notifications', () {}),
+            _buildListTile(Icons.language, 'Change language', () {}),
+            _buildListTile(Icons.account_circle, 'Manage accounts', () {}),
+            const SizedBox(height: 20),
+            _buildSectionTitle('General'),
+            _buildListTile(Icons.privacy_tip, 'Privacy Policy', () {}),
+            _buildListTile(Icons.article, 'Terms of Service', () {}),
+            _buildListTile(Icons.star, 'Rate Feelty App', () {}),
+            const SizedBox(height: 20),
+            const Text(
+              'PT. Feelty Indonesia',
+              style: TextStyle(color: Colors.grey, fontSize: 12),
+            ),
+          ],
         ),
       ),
+      bottomNavigationBar: const NavBar(),
     );
   }
-}
 
-class ProfileStatCard extends StatelessWidget {
-  final String title;
-  final String subtitle;
-
-  const ProfileStatCard(
-      {super.key, required this.title, required this.subtitle});
-
-  @override
-  Widget build(BuildContext context) {
+  Widget _buildInfoCard(String value, String label) {
     return Column(
       children: [
         Container(
-          width: 110,
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
             border: Border.all(color: Colors.orange),
             borderRadius: BorderRadius.circular(8),
           ),
           child: Text(
-            title,
-            textAlign: TextAlign.center,
+            value,
             style: const TextStyle(
-              fontSize: 18,
+              fontSize: 16,
               fontWeight: FontWeight.bold,
               color: Colors.orange,
             ),
           ),
         ),
         const SizedBox(height: 8),
-        Text(subtitle),
+        Text(
+          label,
+          style: const TextStyle(fontSize: 12, color: Colors.grey),
+        ),
       ],
     );
   }
-}
 
-class ProfileMenuItem extends StatelessWidget {
-  final String title;
-  final IconData icon;
-
-  const ProfileMenuItem(this.title, this.icon, {super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      contentPadding: EdgeInsets.zero,
-      leading: Icon(icon, color: Colors.orange),
-      title: Text(title),
-      trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-    );
-  }
-}
-
-class SectionTitle extends StatelessWidget {
-  final String title;
-
-  const SectionTitle(this.title, {super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+  Widget _buildSectionTitle(String title) {
+    return Align(
+      alignment: Alignment.centerLeft,
       child: Text(
         title,
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.bold,
-          color: Colors.grey[600],
+          color: Colors.black,
         ),
       ),
+    );
+  }
+
+  Widget _buildListTile(IconData icon, String title, VoidCallback onTap) {
+    return ListTile(
+      leading: Icon(icon, color: Colors.orange),
+      title: Text(title),
+      trailing: const Icon(Icons.chevron_right),
+      onTap: onTap,
     );
   }
 }

@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../../components/already_have_an_account_acheck.dart';
 import '../../../constants.dart';
-import '../../Login/login_screen.dart';
 
 class SignUpForm extends StatelessWidget {
   const SignUpForm({
@@ -14,16 +11,36 @@ class SignUpForm extends StatelessWidget {
     return Form(
       child: Column(
         children: [
+          const SizedBox(height: 20),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: defaultPadding),
+            child: Text(
+              "Registration",
+              style: TextStyle(
+                fontSize: 35,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          const SizedBox(height: 10),
           TextFormField(
             keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
             cursorColor: kPrimaryColor,
             onSaved: (email) {},
-            decoration: const InputDecoration(
-              hintText: "Your email",
-              prefixIcon: Padding(
-                padding: EdgeInsets.all(defaultPadding),
-                child: Icon(Icons.person),
+            decoration: InputDecoration(
+              labelText: "Email Address",
+              hintText: "lanadee@gmail.com",
+              labelStyle: const TextStyle(color: Colors.black),
+              hintStyle: const TextStyle(color: Colors.grey),
+              suffixIcon: const Icon(Icons.email_outlined, color: kPrimaryColor),
+              enabledBorder: OutlineInputBorder(
+                borderSide: const BorderSide(color: kPrimaryColor, width: 2),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: const BorderSide(color: kPrimaryColor, width: 2),
+                borderRadius: BorderRadius.circular(8),
               ),
             ),
           ),
@@ -33,11 +50,65 @@ class SignUpForm extends StatelessWidget {
               textInputAction: TextInputAction.done,
               obscureText: true,
               cursorColor: kPrimaryColor,
-              decoration: const InputDecoration(
-                hintText: "Your password",
-                prefixIcon: Padding(
-                  padding: EdgeInsets.all(defaultPadding),
-                  child: Icon(Icons.lock),
+              decoration: InputDecoration(
+                hintText: "Phone Number",
+                labelText: "Phone Number",
+                labelStyle: const TextStyle(color: Colors.black),
+                hintStyle: const TextStyle(color: Colors.grey),
+                suffixIcon: const Icon(Icons.phone_outlined, color: kPrimaryColor),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: kPrimaryColor, width: 2),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: kPrimaryColor, width: 2),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: defaultPadding),
+            child: TextFormField(
+              textInputAction: TextInputAction.done,
+              obscureText: true,
+              cursorColor: kPrimaryColor,
+              decoration: InputDecoration(
+                hintText: "*********",
+                labelText: "Password",
+                labelStyle: const TextStyle(color: Colors.black),
+                hintStyle: const TextStyle(color: Colors.grey),
+                suffixIcon: const Icon(Icons.remove_red_eye_outlined, color: kPrimaryColor),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: kPrimaryColor, width: 2),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: kPrimaryColor, width: 2),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: defaultPadding),
+            child: TextFormField(
+              textInputAction: TextInputAction.done,
+              obscureText: true,
+              cursorColor: kPrimaryColor,
+              decoration: InputDecoration(
+                hintText: "************",
+                labelText: "Confirm Password",
+                labelStyle: const TextStyle(color: Colors.black),
+                hintStyle: const TextStyle(color: Colors.grey),
+                suffixIcon: const Icon(Icons.remove_red_eye_outlined, color: kPrimaryColor),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: kPrimaryColor, width: 2),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: kPrimaryColor, width: 2),
+                  borderRadius: BorderRadius.circular(8),
                 ),
               ),
             ),
@@ -45,21 +116,15 @@ class SignUpForm extends StatelessWidget {
           const SizedBox(height: defaultPadding / 2),
           ElevatedButton(
             onPressed: () {},
-            child: Text("Sign Up".toUpperCase()),
-          ),
-          const SizedBox(height: defaultPadding),
-          AlreadyHaveAnAccountCheck(
-            login: false,
-            press: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return const LoginScreen();
-                  },
-                ),
-              );
-            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: kPrimaryColor,
+              elevation: 0,
+              minimumSize: const Size(double.infinity, 50),
+            ),
+            child: Text(
+              "Create Account".toUpperCase(),
+              style: const TextStyle(color: Colors.white),
+            ),
           ),
         ],
       ),

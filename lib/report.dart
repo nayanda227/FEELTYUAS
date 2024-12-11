@@ -1,175 +1,303 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_svg/flutter_svg.dart';
 import 'package:uts_feelty/gnavbar.dart';
 
-void main() {
-  runApp(const ReportApp());
-}
-
-class ReportApp extends StatelessWidget {
-  const ReportApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: ReportPage(),
-    );
-  }
-}
-
 class ReportPage extends StatelessWidget {
-  const ReportPage({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: const NavBar(),
-      appBar: AppBar(
-        title: const Text("Reports"),
-        backgroundColor: Colors.white38,
-        centerTitle: true,
-        elevation: 0,
-      ),
-      body: const SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.all(16.0),
+      backgroundColor: Colors.grey[100],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(16),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Workout, Calories, Time summary
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  MetricCard(title: "Workout", value: "0"),
-                  MetricCard(title: "Calories", value: "0.0"),
-                  MetricCard(title: "Time", value: "0"),
-                ],
-              ),
-              SizedBox(height: 20),
-
-              // Calendar
-              ReportCard(
-                title: "Calendar",
-                child: Text("October 20", style: TextStyle(fontSize: 24)),
-              ),
-              SizedBox(height: 20),
-
-              // Water Intake
-              ReportCard(
-                title: "Water Intake",
-                child: Text("1200 ml", style: TextStyle(fontSize: 24)),
-              ),
-              SizedBox(height: 20),
-
-              // Calories Burned
-              ReportCard(
-                title: "Calories Burned",
-                child: Text("5200 kcal", style: TextStyle(fontSize: 24)),
-              ),
-              SizedBox(height: 20),
-
-              // Steps
-              ReportCard(
-                title: "Steps",
-                child: Text("12000", style: TextStyle(fontSize: 24)),
-              ),
-              SizedBox(height: 20),
-
-              // Weight
-              ReportCard(
-                title: "Weight (kg)",
-                child: Column(
-                  children: [
-                    Text("Current: 65", style: TextStyle(fontSize: 16)),
-                    Text("Last Week: 0.0", style: TextStyle(fontSize: 16)),
-                    Text("Average: 65.4", style: TextStyle(fontSize: 16)),
-                  ],
+              // Header Title
+              Text(
+                "Reports",
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.orange,
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 16),
 
-              // Calories Burned Chart
-              ReportCard(
-                title: "Calories Burned (Monthly)",
-                child:
-                    Text("Chart Placeholder", style: TextStyle(fontSize: 16)),
+              // Header Stats
+              headerStats(),
+              const SizedBox(height: 16),
+
+              // Calendar and Water
+              Row(
+                children: [
+                  Expanded(child: calendarCard()),
+                  const SizedBox(width: 8),
+                  Expanded(child: waterCard()),
+                ],
               ),
+              const SizedBox(height: 16),
+
+              // Calories Eaten and Burned
+              Row(
+                children: [
+                  Expanded(child: caloriesEatenCard()),
+                  const SizedBox(width: 8),
+                  Expanded(child: caloriesBurnedCard()),
+                ],
+              ),
+              const SizedBox(height: 16),
+
+              // Weight Section
+              weightSection(),
+              const SizedBox(height: 16),
+
+              // Calories Burned Graph Section
+              caloriesBurnedSection(),
             ],
           ),
         ),
       ),
+      bottomNavigationBar: const NavBar(), // Correctly placed navigation bar
     );
   }
-}
 
-class MetricCard extends StatelessWidget {
-  final String title;
-  final String value;
-
-  const MetricCard({super.key, required this.title, required this.value});
-
-  @override
-  Widget build(BuildContext context) {
+  Widget headerStats() {
     return Container(
-      width: 110,
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.orange[100],
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          statItem("Workout", "0"),
+          statItem("Calories", "0.0"),
+          statItem("Time", "0"),
+        ],
+      ),
+    );
+  }
+
+  Widget statItem(String label, String value) {
+    return Column(
+      children: [
+        Text(
+          value,
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(height: 4),
+        Text(
+          label,
+          style: TextStyle(color: Colors.grey),
+        ),
+      ],
+    );
+  }
+
+  Widget calendarCard() {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
         children: [
           Text(
-            title,
-            style: TextStyle(fontSize: 14, color: Colors.orange[800]),
+            "May 2024",
+            style: TextStyle(fontWeight: FontWeight.bold),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 16),
+          Icon(Icons.calendar_today, color: Colors.orange, size: 48),
+        ],
+      ),
+    );
+  }
+
+  Widget waterCard() {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.lightBlue[50],
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(
+        children: [
           Text(
-            value,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            "Water",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 16),
+          Icon(Icons.opacity, color: Colors.blue, size: 48),
+          const SizedBox(height: 8),
+          Text(
+            "1200 ml",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
         ],
       ),
     );
   }
-}
 
-class ReportCard extends StatelessWidget {
-  final String title;
-  final Widget child;
-
-  const ReportCard({super.key, required this.title, required this.child});
-
-  @override
-  Widget build(BuildContext context) {
+  Widget caloriesEatenCard() {
     return Container(
-      width: 350,
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.orange[50],
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(
+        children: [
+          Text(
+            "Calories Eaten",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 16),
+          Text(
+            "6200 calories",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget caloriesBurnedCard() {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.orange[50],
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(
+        children: [
+          Text(
+            "Calories Burned",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 16),
+          Text(
+            "1200 calories",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget weightSection() {
+    return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            blurRadius: 10,
-            offset: const Offset(0, 5),
-          ),
-        ],
+        borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            title,
-            style: TextStyle(
-                fontSize: 18,
-                color: Colors.orange[800],
-                fontWeight: FontWeight.w500),
+            "Weight (kg)",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
-          const SizedBox(height: 10),
-          child,
+          const SizedBox(height: 8),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              weightInfo("Current", "65"),
+              weightInfo("Last 30 days", "0.0"),
+              weightInfo("Annual average", "65.4"),
+            ],
+          ),
         ],
       ),
     );
   }
+
+  Widget weightInfo(String label, String value) {
+    return Column(
+      children: [
+        Text(
+          value,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 18,
+          ),
+        ),
+        const SizedBox(height: 4),
+        Text(
+          label,
+          style: TextStyle(
+            color: Colors.grey,
+            fontSize: 12,
+          ),
+          textAlign: TextAlign.center,
+        ),
+      ],
+    );
+  }
+
+  Widget caloriesBurnedSection() {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Calories Burned (calories)",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          ),
+          const SizedBox(height: 8),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("20", style: TextStyle(fontSize: 12, color: Colors.grey)),
+              Text("21", style: TextStyle(fontSize: 12, color: Colors.grey)),
+              Text("22", style: TextStyle(fontSize: 12, color: Colors.grey)),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Container(
+            height: 120,
+            child: CustomPaint(
+              painter: CaloriesGraphPainter(),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class CaloriesGraphPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = Colors.orange
+      ..strokeWidth = 2;
+
+    // Draw horizontal baseline
+    canvas.drawLine(
+      Offset(0, size.height * 0.5),
+      Offset(size.width, size.height * 0.5),
+      paint,
+    );
+
+    // Draw bar chart (example data)
+    final barWidth = size.width / 7;
+    for (int i = 0; i < 7; i++) {
+      final barHeight = i == 3 ? size.height * 0.7 : size.height * 0.3;
+      canvas.drawRect(
+        Rect.fromLTWH(i * barWidth, size.height - barHeight, barWidth / 2, barHeight),
+        paint,
+      );
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

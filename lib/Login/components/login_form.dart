@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-
-import '../../../components/already_have_an_account_acheck.dart';
+import 'package:uts_feelty/Login/components/forgotpass.dart';
 import '../../../constants.dart';
-import '../../SignUp/signup_screen.dart';
+import '../../workout.dart';
+
 
 class LoginForm extends StatelessWidget {
   const LoginForm({
@@ -14,16 +14,36 @@ class LoginForm extends StatelessWidget {
     return Form(
       child: Column(
         children: [
+          const SizedBox(height: 20),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: defaultPadding),
+            child: Text(
+              "Sign in",
+              style: TextStyle(
+                fontSize: 35,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          const SizedBox(height: 10),
           TextFormField(
             keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
             cursorColor: kPrimaryColor,
             onSaved: (email) {},
-            decoration: const InputDecoration(
-              hintText: "Your email",
-              prefixIcon: Padding(
-                padding: EdgeInsets.all(defaultPadding),
-                child: Icon(Icons.email),
+            decoration: InputDecoration(
+              labelText: "Email Address",
+              hintText: "lanadee@gmail.com",
+              labelStyle: const TextStyle(color: Colors.black),
+              hintStyle: const TextStyle(color: Colors.grey),
+              suffixIcon: const Icon(Icons.email_outlined, color: kPrimaryColor),
+              enabledBorder: OutlineInputBorder(
+                borderSide: const BorderSide(color: kPrimaryColor, width: 2),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: const BorderSide(color: kPrimaryColor, width: 2),
+                borderRadius: BorderRadius.circular(8),
               ),
             ),
           ),
@@ -33,34 +53,82 @@ class LoginForm extends StatelessWidget {
               textInputAction: TextInputAction.done,
               obscureText: true,
               cursorColor: kPrimaryColor,
-              decoration: const InputDecoration(
-                hintText: "Your password",
-                prefixIcon: Padding(
-                  padding: EdgeInsets.all(defaultPadding),
-                  child: Icon(Icons.lock),
+              decoration: InputDecoration(
+                hintText: "*********",
+                labelText: "Password",
+                labelStyle: const TextStyle(color: Colors.black),
+                hintStyle: const TextStyle(color: Colors.grey),
+                suffixIcon: const Icon(Icons.remove_red_eye_outlined, color: kPrimaryColor),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: kPrimaryColor, width: 2),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: kPrimaryColor, width: 2),
+                  borderRadius: BorderRadius.circular(8),
                 ),
               ),
             ),
           ),
-          const SizedBox(height: defaultPadding),
-          ElevatedButton(
-            onPressed: () {},
-            child: Text(
-              "Login".toUpperCase(),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: defaultPadding),
+            child: Row(
+              children: [
+                Row(
+                  children: [
+                    Checkbox(
+                      value: true,
+                      activeColor: kPrimaryColor,
+                      onChanged: (value) {
+                      },
+                    ),
+                    const Text("Remember me"),
+                  ],
+                ),
+                const Spacer(),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return const ForgotPassword();
+                        },
+                      )
+                    );
+                  },
+                  child: Text(
+                    "Forgot Password?",
+                    style: TextStyle(
+                      color: kPrimaryColor,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
-          const SizedBox(height: defaultPadding),
-          AlreadyHaveAnAccountCheck(
-            press: () {
+          const SizedBox(height: defaultPadding / 2),
+          ElevatedButton(
+            onPressed: () {
               Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return const SignUpScreen();
-                  },
-                ),
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return const HomePage();
+                    },
+                  )
               );
             },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: kPrimaryColor,
+              elevation: 0,
+              minimumSize: const Size(double.infinity, 50),
+            ),
+            child: Text(
+              "Login".toUpperCase(),
+              style: const TextStyle(color: Colors.white),
+            ),
           ),
         ],
       ),

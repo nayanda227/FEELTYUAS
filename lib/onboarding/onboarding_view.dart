@@ -29,7 +29,7 @@ class _OnboardingViewState extends State<OnboardingView> {
             : Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  // Skip Button
+                  // Skip Buttond
                   TextButton(
                       onPressed: () => pageController
                           .jumpToPage(controller.items.length - 1),
@@ -58,7 +58,7 @@ class _OnboardingViewState extends State<OnboardingView> {
               ),
       ),
       body: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 15),
+        margin: const EdgeInsets.all(40),
         child: PageView.builder(
             onPageChanged: (index) => setState(
                 () => isLastPage = controller.items.length - 1 == index),
@@ -73,11 +73,11 @@ class _OnboardingViewState extends State<OnboardingView> {
                   Text(
                     controller.items[index].title,
                     style: const TextStyle(
-                        fontSize: 30, fontWeight: FontWeight.bold),
+                        fontSize: 28, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 15),
                   Text(controller.items[index].descriptions,
-                      style: const TextStyle(color: Colors.grey, fontSize: 17),
+                      style: const TextStyle(color: Colors.grey, fontSize: 15),
                       textAlign: TextAlign.center),
                 ],
               );
@@ -88,7 +88,9 @@ class _OnboardingViewState extends State<OnboardingView> {
 
   // Get Started Button
   Widget getStarted() {
-    return Container(
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 20),
+      child:Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         color: primaryColor,
@@ -110,6 +112,7 @@ class _OnboardingViewState extends State<OnboardingView> {
             color: Colors.white,
           ),
         ),
+      ),
       ),
     );
   }

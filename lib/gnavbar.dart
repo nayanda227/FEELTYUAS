@@ -53,7 +53,7 @@ class _NavBarState extends State<NavBar> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const NutritionPage()),
+                      builder: (context) => NutritionPage()),
                 );
               },
             ),
@@ -63,7 +63,7 @@ class _NavBarState extends State<NavBar> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const ReportPage()),
+                  MaterialPageRoute(builder: (context) => ReportPage()),
                 );
               },
             ),

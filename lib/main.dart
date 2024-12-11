@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uts_feelty/onboarding/onboarding_view.dart';
+import 'package:uts_feelty/welcome/Welcomescreen.dart';
 import 'package:uts_feelty/workout.dart';
 //import 'package:uts_feelty/workout.dart';
 
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: onboarding ? const OnboardingView() : const HomePage(),
+      home: onboarding ? const OnboardingView() : const OnboardingView(),
     );
   }
 }
